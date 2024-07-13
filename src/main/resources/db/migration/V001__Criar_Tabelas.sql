@@ -1,26 +1,26 @@
 CREATE TABLE posicoes(
-    id      BIGINT,
+    id      BIGINT GENERATED ALWAYS AS IDENTITY,
     nome    VARCHAR(255) UNIQUE NOT NULL,
 
     PRIMARY KEY(id)
 );
 
 CREATE TABLE clubes(
-    id      BIGINT,
+    id      BIGINT GENERATED ALWAYS AS IDENTITY,
     nome    VARCHAR(255) UNIQUE NOT NULL,
 
     PRIMARY KEY(id)
 );
 
 CREATE TABLE temporadas(
-    id      BIGINT,
+    id      BIGINT GENERATED ALWAYS AS IDENTITY,
     periodo VARCHAR(009) UNIQUE NOT NULL,
 
     PRIMARY KEY(id)
 );
 
 CREATE TABLE jogadores(
-    id              BIGINT,
+    id              BIGINT GENERATED ALWAYS AS IDENTITY,
     nome            VARCHAR(255) NOT NULL,
     data_nascimento DATE NOT NULL,
     clube_id        BIGINT NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE jogadores(
 );
 
 CREATE TABLE estatisticas(
-    id                  BIGINT,
+    id                  BIGINT GENERATED ALWAYS AS IDENTITY,
     temporada_id        BIGINT NOT NULL,
     jogador_id          BIGINT NOT NULL,
     numero_jogos        BIGINT NOT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE estatisticas(
 );
 
 CREATE TABLE posicoes_jogadores(
-    id              BIGINT,
+    id              BIGINT GENERATED ALWAYS AS IDENTITY,
     posicao_id      BIGINT NOT NULL,
     jogador_id      BIGINT NOT NULL,
 
