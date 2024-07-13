@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.*;
 
+@NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
