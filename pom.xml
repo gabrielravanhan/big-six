@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.gabrielravanhan</groupId>
-    <artifactId>big-six-api</artifactId>
+    <artifactId>big-six</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>big-six-api</name>
-    <description>API RESTful com os clubes do &quot;Big Six&quot; da Premier League.</description>
+    <name>big-six</name>
+    <description>API RESTful sobre os jogadores dos clubes do &quot;Big Six&quot; da Premier League.</description>
     <properties>
         <java.version>17</java.version>
     </properties>
@@ -54,6 +54,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
     </dependencies>
 
