@@ -6,6 +6,7 @@ import lombok.*;
 import java.time.LocalDate;
 import java.util.List;
 
+@NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
@@ -22,7 +23,7 @@ public class Jogador {
     private String nome;
 
     @Column(nullable = false)
-    private LocalDate dataNacimento;
+    private LocalDate dataNascimento;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(nullable = false)

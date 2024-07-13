@@ -29,25 +29,25 @@ CREATE TABLE jogadores(
     FOREIGN KEY(clube_id) REFERENCES clubes(id)
 );
 
-CREATE TABLE posicoes_jogadores(
+CREATE TABLE estatisticas(
     id                  BIGINT,
-    posicao_id          BIGINT NOT NULL,
+    temporada_id        BIGINT NOT NULL,
     jogador_id          BIGINT NOT NULL,
     numero_jogos        BIGINT NOT NULL,
     numero_gols         BIGINT NOT NULL,
     numero_assistencias BIGINT NOT null,
 
     PRIMARY KEY(id),
-    FOREIGN KEY(posicao_id) REFERENCES posicoes(id),
+    FOREIGN KEY(temporada_id) REFERENCES temporadas(id),
     FOREIGN KEY(jogador_id) REFERENCES jogadores(id)
 );
 
-CREATE TABLE estatisticas(
+CREATE TABLE posicoes_jogadores(
     id              BIGINT,
-    temporada_id    BIGINT NOT NULL,
+    posicao_id      BIGINT NOT NULL,
     jogador_id      BIGINT NOT NULL,
 
     PRIMARY KEY(id),
-    FOREIGN KEY(temporada_id) REFERENCES temporadas(id),
+    FOREIGN KEY(posicao_id) REFERENCES posicoes(id),
     FOREIGN KEY(jogador_id) REFERENCES jogadores(id)
 );

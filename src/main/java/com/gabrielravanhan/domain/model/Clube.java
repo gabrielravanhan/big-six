@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.util.List;
 
+@NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
@@ -19,8 +20,4 @@ public class Clube {
 
     @Column(unique = true, nullable = false)
     private String nome;
-
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false)
-    private List<Jogador> Jogadores;
 }
