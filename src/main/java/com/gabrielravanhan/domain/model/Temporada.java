@@ -3,6 +3,7 @@ package com.gabrielravanhan.domain.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+@NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
