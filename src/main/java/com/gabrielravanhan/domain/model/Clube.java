@@ -3,8 +3,6 @@ package com.gabrielravanhan.domain.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
