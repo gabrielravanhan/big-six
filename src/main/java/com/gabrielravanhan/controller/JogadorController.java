@@ -26,7 +26,7 @@ public class JogadorController {
             @ApiResponse(responseCode = "200", description = "Sucesso")
     })
     public ResponseEntity<List<Jogador>> bucarTodos() {
-        var jogadores = this.jogadorService.buscarTodos();
+        List<Jogador> jogadores = this.jogadorService.buscarTodos();
         return ResponseEntity.ok(jogadores);
     }
 
@@ -37,7 +37,7 @@ public class JogadorController {
             @ApiResponse(responseCode = "404", description = "Jogador não encontrado")
     })
     public ResponseEntity<Jogador> buscarPeloId(@PathVariable Long id) {
-        var jogador = this.jogadorService.buscarPeloId(id);
+        Jogador jogador = this.jogadorService.buscarPeloId(id);
         return ResponseEntity.ok(jogador);
     }
 
@@ -48,7 +48,7 @@ public class JogadorController {
             @ApiResponse(responseCode = "422", description = "Dados inválidos")
     })
     public ResponseEntity<Jogador> criar(@RequestBody Jogador jogador) {
-        var jog = jogadorService.criar(jogador);
+        jogadorService.criar(jogador);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(jogador.getId())
@@ -64,8 +64,8 @@ public class JogadorController {
             @ApiResponse(responseCode = "422", description = "Dados inválidos")
     })
     public ResponseEntity<Jogador> atualizar(@RequestParam Long id, @RequestBody Jogador jogador) {
-        var jog = jogadorService.atualizar(id, jogador);
-        return ResponseEntity.ok(jog);
+        Jogador dbJogador = jogadorService.atualizar(id, jogador);
+        return ResponseEntity.ok(dbJogador);
     }
 
     @DeleteMapping

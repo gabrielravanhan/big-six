@@ -1,7 +1,7 @@
 package com.gabrielravanhan.controller;
 
-import com.gabrielravanhan.domain.model.EstatisticaJogador;
-import com.gabrielravanhan.service.EstatisticaJogadorService;
+import com.gabrielravanhan.domain.model.TemporadaJogador;
+import com.gabrielravanhan.service.TemporadaJogadorService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -15,19 +15,19 @@ import java.util.List;
 
 @RequestMapping("/temporadas-jogadores")
 @RestController
-public class EstatisticaJogadorController {
+public class TemporadaJogadorController {
 
     @Autowired
-    private EstatisticaJogadorService estatisticaJogadorService;
+    private TemporadaJogadorService temporadaJogadorService;
 
     @GetMapping
     @Operation(summary = "Buscar todas as temporadas dos jogadores", description = "Retorna uma lista com todas as temporadas dos jogadores")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Sucesso")
     })
-    public ResponseEntity<List<EstatisticaJogador>> bucarTodos() {
-        var estatisticasJogadores = this.estatisticaJogadorService.buscarTodos();
-        return ResponseEntity.ok(estatisticasJogadores);
+    public ResponseEntity<List<TemporadaJogador>> bucarTodos() {
+        List<TemporadaJogador> temporadasJogadores = this.temporadaJogadorService.buscarTodos();
+        return ResponseEntity.ok(temporadasJogadores);
     }
 
     @GetMapping("/{id}")
@@ -36,46 +36,46 @@ public class EstatisticaJogadorController {
             @ApiResponse(responseCode = "200", description = "Sucesso"),
             @ApiResponse(responseCode = "404", description = "Temporada do jogador não encontrada")
     })
-    public ResponseEntity<EstatisticaJogador> buscarPeloId(@PathVariable Long id) {
-        var estatisticasJogadores = this.estatisticaJogadorService.buscarPeloId(id);
-        return ResponseEntity.ok(estatisticasJogadores);
+    public ResponseEntity<TemporadaJogador> buscarPeloId(@PathVariable Long id) {
+        TemporadaJogador temporadaJogador = this.temporadaJogadorService.buscarPeloId(id);
+        return ResponseEntity.ok(temporadaJogador);
     }
 
     @PostMapping
     @Operation(summary = "Criar informações da temporada de um jogador", description = "Insere informações da temporada de um jogador no banco de dados")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Jogador criado"),
+            @ApiResponse(responseCode = "201", description = "Temporada do jogador criada"),
             @ApiResponse(responseCode = "422", description = "Dados inválidos")
     })
-    public ResponseEntity<EstatisticaJogador> criar(@RequestBody EstatisticaJogador estatisticaJogador) {
-        var estJog = estatisticaJogadorService.criar(estatisticaJogador);
+    public ResponseEntity<TemporadaJogador> criar(@RequestBody TemporadaJogador temporadaJogador) {
+        temporadaJogadorService.criar(temporadaJogador);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(estatisticaJogador.getId())
+                .buildAndExpand(temporadaJogador.getId())
                 .toUri();
-        return ResponseEntity.created(location).body(estatisticaJogador);
+        return ResponseEntity.created(location).body(temporadaJogador);
     }
 
     @PutMapping
-    @Operation(summary = "Atualizar um jogador", description = "Atualiza um jogador")
+    @Operation(summary = "Atualizar informações da temporada de um jogador", description = "Atualiza informações da temporada de um jogador")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Jogador atualizado"),
-            @ApiResponse(responseCode = "404", description = "Jogador não encontrado"),
+            @ApiResponse(responseCode = "200", description = "Temporada do jogador não atualizada"),
+            @ApiResponse(responseCode = "404", description = "Temporada do jogador não encontrada"),
             @ApiResponse(responseCode = "422", description = "Dados inválidos")
     })
-    public ResponseEntity<EstatisticaJogador> atualizar(@RequestParam Long id, @RequestBody EstatisticaJogador estatisticaJogador) {
-        var estJog = estatisticaJogadorService.atualizar(id, estatisticaJogador);
-        return ResponseEntity.ok(estJog);
+    public ResponseEntity<TemporadaJogador> atualizar(@RequestParam Long id, @RequestBody TemporadaJogador temporadaJogador) {
+        TemporadaJogador dbTemporadaJogador = temporadaJogadorService.atualizar(id, temporadaJogador);
+        return ResponseEntity.ok(dbTemporadaJogador);
     }
 
     @DeleteMapping
     @Operation(summary = "Deletar um jogador", description = "Deleta um jogador do banco de dados")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "204", description = "Temporada do jogador deletado"),
+            @ApiResponse(responseCode = "204", description = "Temporada do jogador deletada"),
             @ApiResponse(responseCode = "404", description = "Temporada do jogador não encontrada")
     })
     public ResponseEntity<Void> deletar(@RequestParam Long id) {
-        estatisticaJogadorService.deletar(id);
+        temporadaJogadorService.deletar(id);
         return ResponseEntity.noContent().build();
     }
 }

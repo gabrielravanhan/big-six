@@ -10,8 +10,8 @@ import lombok.*;
 @Getter
 @EqualsAndHashCode(of = "id")
 @Entity
-@Table(name = "estatisticas")
-public class EstatisticaJogador {
+@Table(name = "temporadas_jogadores")
+public class TemporadaJogador {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

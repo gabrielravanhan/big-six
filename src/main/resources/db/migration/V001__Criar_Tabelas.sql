@@ -29,7 +29,7 @@ CREATE TABLE jogadores(
     FOREIGN KEY(clube_id) REFERENCES clubes(id)
 );
 
-CREATE TABLE estatisticas(
+CREATE TABLE temporadas_jogadores(
     id                  BIGINT GENERATED ALWAYS AS IDENTITY,
     temporada_id        BIGINT NOT NULL,
     jogador_id          BIGINT NOT NULL,
