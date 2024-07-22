@@ -60,6 +60,9 @@ public class JogadorServiceImpl implements JogadorService {
         ofNullable(jogador.getNome()).orElseThrow(() -> new NullFieldException("o nome do jogador"));
         ofNullable(jogador.getDataNascimento()).orElseThrow(() -> new NullFieldException("a data de nascimento do jogador"));
         ofNullable(jogador.getClube()).orElseThrow(() -> new NullFieldException("o clube do jogador"));
-        ofNullable(jogador.getPosicoes()).orElseThrow(() -> new NullFieldException("as posições do jogador"));
+//      ofNullable(jogador.getPosicoes()).orElseThrow(() -> new NullFieldException("as posições do jogador"));
+        if (jogador.getPosicoes().isEmpty()) {
+            throw new NullFieldException("as posições do jogador");
+        }
     }
 }
