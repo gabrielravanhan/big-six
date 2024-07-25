@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EstatisticaRepository extends JpaRepository<TemporadaJogador, Long> {
+public interface TemporadaJogadorRepository extends JpaRepository<TemporadaJogador, Long> {
 }
