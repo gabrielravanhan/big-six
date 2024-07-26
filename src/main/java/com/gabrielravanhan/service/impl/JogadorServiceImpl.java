@@ -5,7 +5,7 @@ import com.gabrielravanhan.domain.repository.JogadorRepository;
 import com.gabrielravanhan.service.JogadorService;
 import com.gabrielravanhan.service.exception.BusinessException;
 import com.gabrielravanhan.service.exception.NotFoundException;
-import com.gabrielravanhan.service.exception.NullFieldException;
+import com.gabrielravanhan.service.exception.RequiredFieldException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ public class JogadorServiceImpl implements JogadorService {
 
     @Override
     public Jogador buscarPeloId(Long id) {
-        return this.jogadorRepository.findById(id).orElseThrow(NotFoundException::new);
+        return this.jogadorRepository.findById(id).orElseThrow(() -> new NotFoundException("jogador"));
     }
 
     @Override
@@ -57,12 +57,14 @@ public class JogadorServiceImpl implements JogadorService {
     }
 
     private void validarCamposJogador(Jogador jogador) {
-        ofNullable(jogador.getNome()).orElseThrow(() -> new NullFieldException("o nome do jogador"));
-        ofNullable(jogador.getDataNascimento()).orElseThrow(() -> new NullFieldException("a data de nascimento do jogador"));
-        ofNullable(jogador.getClube()).orElseThrow(() -> new NullFieldException("o clube do jogador"));
-//      ofNullable(jogador.getPosicoes()).orElseThrow(() -> new NullFieldException("as posições do jogador"));
+        ofNullable(jogador.getNome()).orElseThrow(() -> new RequiredFieldException("nome"));
+
+        ofNullable(jogador.getDataNascimento()).orElseThrow(() -> new RequiredFieldException("data de nascimento"));
+
+        ofNullable(jogador.getClube()).orElseThrow(() -> new RequiredFieldException("clube"));
+
         if (jogador.getPosicoes().isEmpty()) {
-            throw new NullFieldException("as posições do jogador");
+            throw new RequiredFieldException("posições");
         }
     }
 }
