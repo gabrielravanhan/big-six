@@ -73,8 +73,6 @@ public class JogadorServiceImpl implements JogadorService {
         if (Period.between(jogador.getDataNascimento(), LocalDate.now()).getYears() < 18)
             throw new BusinessException("O jogador deve ser maior de 18 anos.", HttpStatus.UNPROCESSABLE_ENTITY);
 
-        ofNullable(jogador.getClube()).orElseThrow(() -> new RequiredFieldException("clube"));
-
         if (jogador.getPosicoes().isEmpty())
             throw new RequiredFieldException("posições");
         jogador.getPosicoes().forEach(posicao -> posicaoService.buscarPeloId(posicao.getId()));

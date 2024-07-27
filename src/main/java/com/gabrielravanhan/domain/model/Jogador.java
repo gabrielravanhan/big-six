@@ -25,10 +25,6 @@ public class Jogador {
     @Column(nullable = false)
     private LocalDate dataNascimento;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false)
-    private Clube clube;
-
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "posicoes_jogadores",

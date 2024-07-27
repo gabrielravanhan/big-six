@@ -2,6 +2,7 @@ package com.gabrielravanhan.service.impl;
 
 import com.gabrielravanhan.domain.model.TemporadaJogador;
 import com.gabrielravanhan.domain.repository.TemporadaJogadorRepository;
+import com.gabrielravanhan.service.ClubeService;
 import com.gabrielravanhan.service.JogadorService;
 import com.gabrielravanhan.service.TemporadaJogadorService;
 import com.gabrielravanhan.service.TemporadaService;
@@ -30,6 +31,9 @@ public class TemporadaJogadorServiceImpl implements TemporadaJogadorService {
 
     @Autowired
     JogadorService jogadorService;
+
+    @Autowired
+    ClubeService clubeService;
 
     @Override
     public List<TemporadaJogador> buscarTodos() {
@@ -71,6 +75,9 @@ public class TemporadaJogadorServiceImpl implements TemporadaJogadorService {
 
         ofNullable(temporadaJogador.getJogador()).orElseThrow(() -> new RequiredFieldException("jogador"));
         jogadorService.buscarPeloId(temporadaJogador.getJogador().getId());
+
+        ofNullable(temporadaJogador.getClube()).orElseThrow(() -> new RequiredFieldException("clube"));
+        clubeService.buscarPeloId(temporadaJogador.getClube().getId());
 
         ofNullable(temporadaJogador.getNumeroJogos()).orElseThrow(() -> new RequiredFieldException("número de jogos"));
         if (temporadaJogador.getNumeroJogos() < 0)

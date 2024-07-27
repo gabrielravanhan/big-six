@@ -13,7 +13,6 @@ public record JogadorDto(
         Long id,
         String nome,
         LocalDate dataNascimento,
-        ClubeDto clube,
         List<PosicaoDto> posicoes
 ) {
 
@@ -22,7 +21,6 @@ public record JogadorDto(
                 jogador.getId(),
                 jogador.getNome(),
                 jogador.getDataNascimento(),
-                ofNullable(jogador.getClube()).map(ClubeDto::new).orElse(null),
                 ofNullable(jogador.getPosicoes()).orElse(emptyList()).stream().map(PosicaoDto::new).collect(toList())
         );
     }
@@ -32,7 +30,6 @@ public record JogadorDto(
                 this.id,
                 this.nome,
                 this.dataNascimento,
-                ofNullable(this.clube).map(ClubeDto::converterParaModel).orElse(null),
                 ofNullable(this.posicoes).orElse(emptyList()).stream().map(PosicaoDto::converterParaModel).collect(toList())
         );
     }

@@ -25,6 +25,10 @@ public class TemporadaJogador {
     @JoinColumn(nullable = false)
     private Jogador jogador;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(nullable = false)
+    private Clube clube;
+
     @PositiveOrZero
     @Column(nullable = false)
     private Long numeroJogos;
