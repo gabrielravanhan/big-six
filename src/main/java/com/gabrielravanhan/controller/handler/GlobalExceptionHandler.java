@@ -41,8 +41,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(BusinessException.class)
     public ResponseEntity<Object> handleBusinessException(BusinessException e, WebRequest request) {
-        ResponseError error = responseError(HttpStatus.BAD_REQUEST, e.getMessage());
-        return handleExceptionInternal(e, error, headers(), HttpStatus.BAD_REQUEST, request);
+        ResponseError error = responseError(e.getHttpStatus(), e.getMessage());
+        return handleExceptionInternal(e, error, headers(), e.getHttpStatus(), request);
     }
 
     @ExceptionHandler(RequiredFieldException.class)

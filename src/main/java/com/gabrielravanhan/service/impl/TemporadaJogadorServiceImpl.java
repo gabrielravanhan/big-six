@@ -73,18 +73,15 @@ public class TemporadaJogadorServiceImpl implements TemporadaJogadorService {
         jogadorService.buscarPeloId(temporadaJogador.getJogador().getId());
 
         ofNullable(temporadaJogador.getNumeroJogos()).orElseThrow(() -> new RequiredFieldException("número de jogos"));
-        if (temporadaJogador.getNumeroJogos() < 0) {
+        if (temporadaJogador.getNumeroJogos() < 0)
             throw new InvalidFieldException("número de jogos");
-        }
 
         ofNullable(temporadaJogador.getNumeroGols()).orElseThrow(() -> new RequiredFieldException("número de gols"));
-        if (temporadaJogador.getNumeroGols() < 0) {
+        if (temporadaJogador.getNumeroGols() < 0)
             throw new InvalidFieldException("número de gols");
-        }
 
         ofNullable(temporadaJogador.getNumeroAssistencias()).orElseThrow(() -> new RequiredFieldException("número de assistências"));
-        if (temporadaJogador.getNumeroAssistencias() < 0) {
+        if (temporadaJogador.getNumeroAssistencias() < 0)
             throw new InvalidFieldException("número de assistências");
-        }
     }
 }
