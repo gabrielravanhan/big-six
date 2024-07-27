@@ -55,6 +55,7 @@ public class JogadorController {
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Jogador criado"),
+            @ApiResponse(responseCode = "400", description = "Requisição inválida"),
             @ApiResponse(responseCode = "422", description = "Dados inválidos")
     })
     public ResponseEntity<JogadorDto> criar(@RequestBody JogadorDto jogadorDto) {
@@ -73,6 +74,7 @@ public class JogadorController {
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Jogador atualizado"),
+            @ApiResponse(responseCode = "400", description = "Requisição inválida"),
             @ApiResponse(responseCode = "404", description = "Jogador não encontrado"),
             @ApiResponse(responseCode = "422", description = "Dados inválidos")
     })

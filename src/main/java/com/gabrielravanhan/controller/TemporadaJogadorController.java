@@ -55,6 +55,7 @@ public class TemporadaJogadorController {
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Temporada do jogador criada"),
+            @ApiResponse(responseCode = "400", description = "Requisição inválida"),
             @ApiResponse(responseCode = "422", description = "Dados inválidos")
     })
     public ResponseEntity<TemporadaJogadorDto> criar(@RequestBody TemporadaJogadorDto temporadaJogadorDto) {
@@ -73,6 +74,7 @@ public class TemporadaJogadorController {
     )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Temporada do jogador não atualizada"),
+            @ApiResponse(responseCode = "400", description = "Requisição inválida"),
             @ApiResponse(responseCode = "404", description = "Temporada do jogador não encontrada"),
             @ApiResponse(responseCode = "422", description = "Dados inválidos")
     })
